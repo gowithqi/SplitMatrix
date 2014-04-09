@@ -24,7 +24,13 @@ extends PairFlatMapFunction<String, String, String>{
 	}
 	
 	private int computeMatrixIOrJ(int p) {
-		return (p-1)/2 + 1;
+		int sum = 5716808;
+		int divide = 3;
+		k = sum / divide;
+		
+		int ret = p / k + 1;
+		if (ret > divide) ret = divide;
+		return ret;
 	}
 	
 	@Override
@@ -36,7 +42,7 @@ extends PairFlatMapFunction<String, String, String>{
 		
 		String[] strings = line.split(" ");
 		HashMap<Integer, String> map = new HashMap<Integer, String>();
-		Integer i = Integer.valueOf(strings[0]);
+		Integer i = Integer.valueOf(strings[0].substring(0, strings[0].length()-1));
 		Integer matrixI = computeMatrixIOrJ(i);
 		for (int k = 1; k < strings.length; k++) {
 			Integer j = Integer.valueOf(strings[k]);
